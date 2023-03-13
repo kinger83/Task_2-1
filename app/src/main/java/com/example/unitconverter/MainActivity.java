@@ -78,15 +78,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         destinationSpinner.setOnItemSelectedListener(this);
 
     }
-
+    private int source = -1;
+    private int dest = -1;
 
     public void onConvertClick(View view){
         EditText inputField = findViewById(R.id.editTextNumber);
         TextView resultText = findViewById(R.id.resultTextView);
-        int source = -1;
-        int dest = -1;
-        //float input = Float.valueOf(inputField.getText().toString());
-        float input = 1;
+
+
+        float input = Float.valueOf(inputField.getText().toString());
+        //float input = 1;
         float result;
         switch (source){
             case 0:
@@ -106,7 +107,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        if(parent.getId() == R.id.sourceSpinner){
+            source = position;
+        } else if (parent.getId()== R.id.destinaionSpinner) {
+            dest = position;
+        }
     }
 
     @Override
