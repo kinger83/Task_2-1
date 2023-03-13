@@ -23,34 +23,57 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void OnTapeClick(View view){
         TextView UnitTypeText = findViewById(R.id.UnitTypeTextView);
         UnitTypeText.setText("Distance Converter:");
+         // Setup Source Spinner
+        Spinner sourceSpinner = findViewById(R.id.sourceSpinner);
+        ArrayAdapter<CharSequence> sourceAdapter = ArrayAdapter.createFromResource(this,R.array.Distance, android.R.layout.simple_spinner_item);
+        sourceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sourceSpinner.setAdapter(sourceAdapter);
+        sourceSpinner.setOnItemSelectedListener(this);
 
-        Spinner spinner = findViewById(R.id.distanceSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.Distance, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        // Setup Destination Spinner
+        Spinner destinationSpinner = findViewById(R.id.destinaionSpinner);
+        ArrayAdapter<CharSequence> destinationAdapter = ArrayAdapter.createFromResource(this,R.array.Distance, android.R.layout.simple_spinner_item);
+        destinationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        destinationSpinner.setAdapter(destinationAdapter);
+        destinationSpinner.setOnItemSelectedListener(this);
     }
 
     public void OnTempClick(View view){
         TextView UnitTypeText = findViewById(R.id.UnitTypeTextView);
         UnitTypeText.setText("Temperature Converter:");
 
-        Spinner spinner = findViewById(R.id.distanceSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.Temperature, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        // Setup Source Spinner
+        Spinner sourceSpinner = findViewById(R.id.sourceSpinner);
+        ArrayAdapter<CharSequence> sourceAdapter = ArrayAdapter.createFromResource(this,R.array.Temperature, android.R.layout.simple_spinner_item);
+        sourceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sourceSpinner.setAdapter(sourceAdapter);
+        sourceSpinner.setOnItemSelectedListener(this);
+
+        // Setup Destination Spinner
+        Spinner destinationSpinner = findViewById(R.id.destinaionSpinner);
+        ArrayAdapter<CharSequence> destinationAdapter = ArrayAdapter.createFromResource(this,R.array.Temperature, android.R.layout.simple_spinner_item);
+        destinationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        destinationSpinner.setAdapter(destinationAdapter);
+        destinationSpinner.setOnItemSelectedListener(this);
     }
 
     public void OnWeightClick(View view){
         TextView UnitTypeText = findViewById(R.id.UnitTypeTextView);
         UnitTypeText.setText("Weight Converter:");
 
-        Spinner spinner = findViewById(R.id.distanceSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.Weight, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        // Setup Source Spinner
+        Spinner sourceSpinner = findViewById(R.id.sourceSpinner);
+        ArrayAdapter<CharSequence> sourceAdapter = ArrayAdapter.createFromResource(this,R.array.Weight, android.R.layout.simple_spinner_item);
+        sourceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sourceSpinner.setAdapter(sourceAdapter);
+        sourceSpinner.setOnItemSelectedListener(this);
+
+        // Setup Destination Spinner
+        Spinner destinationSpinner = findViewById(R.id.destinaionSpinner);
+        ArrayAdapter<CharSequence> destinationAdapter = ArrayAdapter.createFromResource(this,R.array.Weight, android.R.layout.simple_spinner_item);
+        destinationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        destinationSpinner.setAdapter(destinationAdapter);
+        destinationSpinner.setOnItemSelectedListener(this);
 
     }
 

@@ -37,13 +37,13 @@
         android:layout_width="85dp"
         android:layout_height="85dp"
         android:layout_marginBottom="16dp"
+        android:onClick="OnWeightClick"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tempButton"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.419"
         app:layout_constraintStart_toEndOf="@+id/distanceButton"
-        app:srcCompat="@drawable/weighticon"
-        android:onClick="OnWeightClick"/>
+        app:srcCompat="@drawable/weighticon" />
 
     <ImageButton
         android:id="@+id/tempButton"
@@ -83,12 +83,44 @@
         app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
     <Spinner
-        android:id="@+id/distanceSpinner"
+        android:id="@+id/sourceSpinner"
         android:layout_width="261dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toEndOf="@+id/textView1"
         app:layout_constraintTop_toBottomOf="@+id/UnitTypeTextView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="serif"
+        android:text="Destination Unit:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+
+    <Spinner
+        android:id="@+id/destinaionSpinner"
+        android:layout_width="230dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+
+    <Button
+        android:id="@+id/convertButton"
+        android:layout_width="156dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="36dp"
+        android:text="Convert"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/destinaionSpinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
