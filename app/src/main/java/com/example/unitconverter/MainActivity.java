@@ -25,6 +25,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void OnTapeClick(View view){
         TextView UnitTypeText = findViewById(R.id.UnitTypeTextView);
         UnitTypeText.setText("Distance Converter:");
+
+        // set unit type to 1 (Distance)
+        unitType = 1;
+
          // Setup Source Spinner
         Spinner sourceSpinner = findViewById(R.id.sourceSpinner);
         ArrayAdapter<CharSequence> sourceAdapter = ArrayAdapter.createFromResource(this,R.array.Distance, android.R.layout.simple_spinner_item);
@@ -43,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void OnTempClick(View view){
         TextView UnitTypeText = findViewById(R.id.UnitTypeTextView);
         UnitTypeText.setText("Temperature Converter:");
+
+        // set unit type to 2 (Temperature)
+        unitType = 2;
 
         // Setup Source Spinner
         Spinner sourceSpinner = findViewById(R.id.sourceSpinner);
@@ -63,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         TextView UnitTypeText = findViewById(R.id.UnitTypeTextView);
         UnitTypeText.setText("Weight Converter:");
 
+        // set unit type to 3 (Weight)
+        unitType = 3;
+
         // Setup Source Spinner
         Spinner sourceSpinner = findViewById(R.id.sourceSpinner);
         ArrayAdapter<CharSequence> sourceAdapter = ArrayAdapter.createFromResource(this,R.array.Weight, android.R.layout.simple_spinner_item);
@@ -78,31 +88,105 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         destinationSpinner.setOnItemSelectedListener(this);
 
     }
+    private int unitType = 0;
     private int source = -1;
     private int dest = -1;
 
     public void onConvertClick(View view){
         EditText inputField = findViewById(R.id.editTextNumber);
         TextView resultText = findViewById(R.id.resultTextView);
-
+        float result = 0;
 
         float input = Float.valueOf(inputField.getText().toString());
-        //float input = 1;
-        float result;
+        if(input == 0){
+            Toast enterNumToast = Toast.makeText(getApplicationContext(), "Please enter a value for calculation,", Toast.LENGTH_SHORT);
+            enterNumToast.show();
+            return;
+        }
+        if(unitType == 0){
+            Toast selectTypeToast = Toast.makeText(getApplicationContext(), "Please select a unit type for conversion.", Toast.LENGTH_SHORT);
+            selectTypeToast.show();
+        } else if (unitType == 1) {
+            result = distanceCalculator(input, source, dest);
+        }
+
+
+        resultText.setText(Float.toString(result));
+    }
+
+    private float distanceCalculator(float input, int source, int dest){
         switch (source){
             case 0:
                 switch(dest){
                     case 0:
-                        result = input;
-                        resultText.setText(Float.toString(result));
-                        break;
-
-                    //
+                        return input;
+                    case 1:
+                        return (float) (input * 39370.1);
+                    case 2:
+                        return (float) (input * 3280.84);
+                    case 3:
+                        return (float) (input * 1093.61);
+                    case 4:
+                        return (float) (input * 0.621371);
+                    }
+            case 1:
+                switch(dest){
+                    case 0:
+                        return (float) (input * 2.54e-5);
+                    case 1:
+                        return (float) (input);
+                    case 2:
+                        return (float) (input * 0.0833333);
+                    case 3:
+                        return (float) (input * 0.0277778);
+                    case 4:
+                        return (float) (input * 1.5783e-5);
                 }
+            case 2:
+                switch(dest){
+                    case 0:
+                        return (float) (input * 0.0003048);
+                    case 1:
+                        return (float) (input * 12);
+                    case 2:
+                        return (float) (input);
+                    case 3:
+                        return (float) (input * 0.333333);
+                    case 4:
+                        return (float) (input * 0.000189394);
+                }
+            case 3:
+                switch(dest){
+                    case 0:
+                        return (float) (input * 0.0009144);
+                    case 1:
+                        return (float) (input * 36);
+                    case 2:
+                        return (float) (input * 3);
+                    case 3:
+                        return (float) (input);
+                    case 4:
+                        return (float) (input * 0.000568182);
+                }
+            case 4:
+                switch(dest){
+                    case 0:
+                        return (float) (input * 1.60934);
+                    case 1:
+                        return (float) (input * 63360);
+                    case 2:
+                        return (float) (input * 5280);
+                    case 3:
+                        return (float) (input * 1760);
+                    case 4:
+                        return (float) (input);
+                }
+
             default:
                 Toast invalSelectionToast = Toast.makeText(getApplicationContext(), "Please select source and destination unit", Toast.LENGTH_SHORT);
                 invalSelectionToast.show();
         }
+        return 0;
     }
 
     @Override
