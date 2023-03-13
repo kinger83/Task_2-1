@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -78,7 +80,29 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
+    public void onConvertClick(View view){
+        EditText inputField = findViewById(R.id.editTextNumber);
+        TextView resultText = findViewById(R.id.resultTextView);
+        int source = -1;
+        int dest = -1;
+        //float input = Float.valueOf(inputField.getText().toString());
+        float input = 1;
+        float result;
+        switch (source){
+            case 0:
+                switch(dest){
+                    case 0:
+                        result = input;
+                        resultText.setText(Float.toString(result));
+                        break;
 
+                    //
+                }
+            default:
+                Toast invalSelectionToast = Toast.makeText(getApplicationContext(), "Please select source and destination unit", Toast.LENGTH_SHORT);
+                invalSelectionToast.show();
+        }
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
