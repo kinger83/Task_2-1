@@ -93,21 +93,40 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private int dest = -1;
 
     public void onConvertClick(View view){
+        // set some variables
         EditText inputField = findViewById(R.id.editTextNumber);
         TextView resultText = findViewById(R.id.resultTextView);
         float result = 0;
-
-        float input = Float.valueOf(inputField.getText().toString());
+        float input = 0;
+    // check a valid number
+    try {
+        input = Float.valueOf(inputField.getText().toString());
+    } catch (NumberFormatException e) {
+        Toast invalNumber = Toast.makeText(getApplicationContext(), "Please select a valid number to convert.", Toast.LENGTH_SHORT);
+        invalNumber.show();
+    }
+        // alert to no number to convert
         if(input == 0){
             Toast enterNumToast = Toast.makeText(getApplicationContext(), "Please enter a value for calculation,", Toast.LENGTH_SHORT);
             enterNumToast.show();
             return;
         }
+        // process no type selected
         if(unitType == 0){
             Toast selectTypeToast = Toast.makeText(getApplicationContext(), "Please select a unit type for conversion.", Toast.LENGTH_SHORT);
             selectTypeToast.show();
-        } else if (unitType == 1) {
+        }
+        // process distance
+        else if (unitType == 1) {
             result = distanceCalculator(input, source, dest);
+        }
+        // process temp
+        else if (unitType == 2) {
+            result = tempCalculator(input, source, dest);
+        }
+        // process weight
+        else if (unitType == 3) {
+            result = weightCalculator(input, source, dest);
         }
 
 
@@ -181,6 +200,105 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     case 4:
                         return (float) (input);
                 }
+
+            default:
+                Toast invalSelectionToast = Toast.makeText(getApplicationContext(), "Please select source and destination unit", Toast.LENGTH_SHORT);
+                invalSelectionToast.show();
+        }
+        return 0;
+    }
+
+    private float tempCalculator(float input, int source, int dest){
+        switch (source){
+            case 0:
+                switch(dest){
+                    case 0:
+                        return (float) input;
+                    case 1:
+                        return (float) ((input * 1.8) + 32);
+                    case 2:
+                        return (float) (input + 273.15);
+
+                }
+            case 1:
+                switch(dest){
+                    case 0:
+                        return (float) ((input - 32) * 0.55555556);
+                    case 1:
+                        return (float) (input);
+                    case 2:
+                        return (float) ((input - 32) * 0.55555556 + 273.15);
+
+                }
+            case 2:
+                switch(dest){
+                    case 0:
+                        return (float) (input - 273.15);
+                    case 1:
+                        return (float) ((input - 273.15) * 1.8 + 32);
+                    case 2:
+                        return (float) (input);
+                }
+
+
+            default:
+                Toast invalSelectionToast = Toast.makeText(getApplicationContext(), "Please select source and destination unit", Toast.LENGTH_SHORT);
+                invalSelectionToast.show();
+        }
+        return 0;
+    }
+
+    private float weightCalculator(float input, int source, int dest){
+        switch (source){
+            case 0:
+                switch(dest){
+                    case 0:
+                        return input;
+                    case 1:
+                        return (float) (input * 2.20462);
+                    case 2:
+                        return (float) (input * 35.274);
+                    case 3:
+                        return (float) (input * 0.001);
+
+                }
+            case 1:
+                switch(dest){
+                    case 0:
+                        return (float) (input * 0.453592);
+                    case 1:
+                        return (float) (input);
+                    case 2:
+                        return (float) (input * 16);
+                    case 3:
+                        return (float) (input * 0.000453592);
+
+                }
+            case 2:
+                switch(dest){
+                    case 0:
+                        return (float) (input * 0.0283495);
+                    case 1:
+                        return (float) (input * 0.0625);
+                    case 2:
+                        return (float) (input);
+                    case 3:
+                        return (float) (input * 2.835e-5);
+
+                }
+            case 3:
+                switch(dest){
+                    case 0:
+                        return (float) (input * 1000);
+                    case 1:
+                        return (float) (input * 2204.62);
+                    case 2:
+                        return (float) (input * 35274);
+                    case 3:
+                        return (float) (input);
+
+                }
+
 
             default:
                 Toast invalSelectionToast = Toast.makeText(getApplicationContext(), "Please select source and destination unit", Toast.LENGTH_SHORT);
