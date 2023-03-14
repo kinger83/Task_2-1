@@ -129,8 +129,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             result = weightCalculator(input, source, dest);
         }
 
-
-        resultText.setText(Float.toString(result));
+        String formattedString = String.format("%.2f", result);
+        resultText.setText(formattedString);
+        //resultText.setText(Float.toString(result));
     }
 
     private float distanceCalculator(float input, int source, int dest){
